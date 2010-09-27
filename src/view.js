@@ -1,5 +1,5 @@
 jQuery.extend({
-    View: function($dataOutput){
+    View: function($gdoc, $dataOutput){
 	console.log($dataOutput);
 	/**
 	 * Referencia a uno mismo (Truco!!)
@@ -20,18 +20,16 @@ jQuery.extend({
 	/**
 	 * Pega los botones.
 	 */
-	$dataOutput.append($("<input type='button' value='Load'></input><br><br>").click(function(){
-	    console.log("hola");
-	    self.viewLoadData;
+	$gdoc.append($("<input type='button' value='Load'></input><br><br>").click(function(){
+	    self.viewLoadData();
 	}));
 
 	/**
 	 * Funcion dummy
 	 */
-	this.viewLoadData = function(){
-	    
-	    $.each(listener, function(i){
-		listeners(i).viewLoadData();
+	this.viewLoadData = function(){	    
+	    $.each(listeners, function(i){
+		listeners[i].viewLoadData();
 	    });
 	}
 

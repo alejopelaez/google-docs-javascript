@@ -5,10 +5,7 @@ jQuery.extend({
 	 */
 	var vlistener = $.ViewListener({
 	    viewLoadData : function(){
-		var all = model.getAll();
-		$.each(all, function(i){
-		    view.show(all[i]);
-		});
+		var all = model.getAll();		
 	    }
 	});
 	view.addListener(vlistener);
@@ -17,8 +14,16 @@ jQuery.extend({
 	 * listen to the model
 	 */
 	var mlist = $.ModelListener({
-	    modelLoadData : function(){
-		view.show("Cargar datos del modelo");
+	    onLoadBegin : function(){
+		view.show("Cargar datos del modelo...");
+	    },
+	    onLoadEnd : function(data){
+		//Aca el coigo que extraiga los datos
+		result = "";
+		for(day in data){
+		    result += data[day] + "<br/>";
+		}
+		view.show(result);
 	    }
 	});
 	model.addListener(mlist);

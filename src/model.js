@@ -17,12 +17,22 @@ jQuery.extend({
 	this.getAll = function(){
 	    //Se notifican los listeners que estamos
 	    //haciendo algo
-	    self.dummyModel();
-	    //Hacemos algo
-	    //...
-	    //...
-	    //Retornamos ese algo
-	    return "Datos"
+	    self.onLoadBegin();
+            $.Model.callback = function(root) {
+                var rows = root.table.rows;
+                var result = [];
+
+                for ( r in rows ) {
+                    result.push( rows[r].c[0].v );
+                }
+                self.onLoadEnd(result);
+            }
+
+            // Leer de google docs
+            var e = document.createElement("script");
+            e.src = 'http://spreadsheets.google.com/tq?tqx=responseHandler:$.Model.callback&tq=select%20A&key=tvL0_bf3YSbCW9dmKBU0neg&pub=1';
+            e.type="text/javascript";
+            document.getElementsByTagName("head")[0].appendChild(e); 
 	}
 	
 	/**
@@ -34,13 +44,22 @@ jQuery.extend({
 	
 	/**
 	 * Función que se llama en los listeners
-	 * del modelo.
+	 * del modelo cuando se empieza a cargar.
 	 */
-	this.dummyModel = function(){
+	this.onLoadBegin = function(){	    
 	    $.each(listeners, function(i){
-		listeners[i].dummyModel();
+		listeners[i].onLoadBegin();
 	    });
-	}	
+	}
+	/**
+	 * Función que se llama en los listeners
+	 * del modelo cuando se termina de cargar.
+	 */
+	this.onLoadEnd = function(result){	    
+	    $.each(listeners, function(i){
+		listeners[i].onLoadEnd(result);
+	    });
+	}
     },
     
     /**
@@ -49,7 +68,8 @@ jQuery.extend({
     ModelListener: function(list) {
 	if(!list) list = {};
 	return $.extend({
-	    dummyModel : function(){}
+	    onLoadBegin : function(){},
+	    onLoadEnd : function(){}
 	}, list);
     }
 });
