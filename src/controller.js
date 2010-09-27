@@ -18,10 +18,10 @@ jQuery.extend({
 		view.show("Cargar datos del modelo...");
 	    },
 	    onLoadEnd : function(data){
-		//Aca el coigo que extraiga los datos
+		//Aca el codigo que extraiga los datos
 		result = "";
-		for(day in data){
-		    result += data[day] + "<br/>";
+		for(i in data){
+		    result += data[i] + "<br/>";
 		}
 		view.show(result);
 	    }

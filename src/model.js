@@ -14,23 +14,31 @@ jQuery.extend({
 	 * or return data from cache if it's already
 	 * loaded
 	 */
-	this.getAll = function(){
+	this.getAll = function(key){
+	    //Default value for the url key
+	    if(key == null)
+		key = "0As2pD6IuRl_7dEpGOFV1aGxIWmlTcElEblJUUFFRZkE";
+
 	    //Se notifican los listeners que estamos
-	    //haciendo algo
+	    //cargando lo datos
 	    self.onLoadBegin();
             $.Model.callback = function(root) {
                 var rows = root.table.rows;
                 var result = [];
 
+		var white_space = false;
                 for ( r in rows ) {
-                    result.push( rows[r].c[0].v );
+		    if(rows[r].c[0].v == "")
+			white_space = true;
+		    else if(white_space)
+			result.push(rows[r].c[0].v);
                 }
                 self.onLoadEnd(result);
-            }
-
+            }	    
             // Leer de google docs
             var e = document.createElement("script");
-            e.src = 'http://spreadsheets.google.com/tq?tqx=responseHandler:$.Model.callback&tq=select%20A&key=tvL0_bf3YSbCW9dmKBU0neg&pub=1';
+            e.src = "http://spreadsheets.google.com/tq?tqx=responseHandler:$.Model.callback&tq=select%20A&key="
+		+ key + "&pub=1";
             e.type="text/javascript";
             document.getElementsByTagName("head")[0].appendChild(e); 
 	}
@@ -55,9 +63,9 @@ jQuery.extend({
 	 * Función que se llama en los listeners
 	 * del modelo cuando se termina de cargar.
 	 */
-	this.onLoadEnd = function(result){	    
+	this.onLoadEnd = function(data){	    
 	    $.each(listeners, function(i){
-		listeners[i].onLoadEnd(result);
+		listeners[i].onLoadEnd(data);
 	    });
 	}
     },
