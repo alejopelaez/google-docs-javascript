@@ -4,7 +4,7 @@ jQuery.extend({
 	 * Escucha a la vista
 	 */
 	var vlistener = $.ViewListener({
-	    dummyView : function{
+	    viewLoadData : function(){
 		var all = model.getAll();
 		$.each(all, function(i){
 		    view.show(all[i]);
@@ -17,8 +17,8 @@ jQuery.extend({
 	 * listen to the model
 	 */
 	var mlist = $.ModelListener({
-	    dummyModel : function(){
-		view.show("Dummy del modelo");
+	    modelLoadData : function(){
+		view.show("Cargar datos del modelo");
 	    }
 	});
 	model.addListener(mlist);

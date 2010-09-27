@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+  <head>     
+    <title>Google docs MVC demo</title>
+    <script type="text/javascript" src="jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="model.js"></script>
+    <script type="text/javascript" src="view.js"></script>
+    <script type="text/javascript" src="controller.js"></script>      
+    <script type="text/javascript">
+	  $(function(){
+	      var model = new $.Model();
+	      var view = new $.View($("#gdocs"))
+	      var controller = new $.Controller(model,view);
+	  });
+    </script>
+  </head>
+  <body>
+    <div id="gdocs">
+      <div id="data"></div>
+    </div>
+  </body>
+</html>

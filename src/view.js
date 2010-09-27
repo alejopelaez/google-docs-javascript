@@ -1,5 +1,6 @@
 jQuery.extend({
-    View: function($buttons){
+    View: function($dataOutput){
+	console.log($dataOutput);
 	/**
 	 * Referencia a uno mismo (Truco!!)
 	 */
@@ -19,17 +20,26 @@ jQuery.extend({
 	/**
 	 * Pega los botones.
 	 */
-	$console.append($("<input type='button' value='Dummy'></input><br><br>").click(function(){
-	    self.dummy;
+	$dataOutput.append($("<input type='button' value='Load'></input><br><br>").click(function(){
+	    console.log("hola");
+	    self.viewLoadData;
 	}));
 
 	/**
 	 * Funcion dummy
 	 */
-	this.dummy = function{
+	this.viewLoadData = function(){
+	    
 	    $.each(listener, function(i){
-		listeners(i).dummyView();
+		listeners(i).viewLoadData();
 	    });
+	}
+
+	/**
+	 * Muestra la información
+	 */
+	this.show = function(datos){	  
+	    $dataOutput.html(datos);
 	}
     },
     
@@ -39,7 +49,7 @@ jQuery.extend({
     ViewListener: function(list) {
 	if(!list) list = {};
 	return $.extend({
-	    dummyView : function(){}
+	    viewLoadData : function(){}
 	}, list);
     }
 });
