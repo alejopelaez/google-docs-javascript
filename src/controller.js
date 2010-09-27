@@ -4,10 +4,10 @@ jQuery.extend({
 	 * Escucha a la vista
 	 */
 	var vlistener = $.ViewListener({
-	    dummy : function{
+	    dummyView : function{
 		var all = model.getAll();
 		$.each(all, function(i){
-		    
+		    view.show(all[i]);
 		});
 	    }
 	});
@@ -17,20 +17,10 @@ jQuery.extend({
 	 * listen to the model
 	 */
 	var mlist = $.ModelListener({
-	    loadBegin : function() {
-		view.message("Fetching Data...");
-	    },
-	    loadFail : function() {
-		view.message("ajax error");
-	    },
-	    loadFinish : function() {
-		view.message("Done.");
-	    },
-	    loadItem : function(item){
-		view.message("from ajax: " + item.name);
+	    dummyModel : function(){
+		view.show("Dummy del modelo");
 	    }
 	});
 	model.addListener(mlist);
-    }
-    
+    }    
 });

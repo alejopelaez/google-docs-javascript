@@ -28,18 +28,18 @@ jQuery.extend({
 	 */
 	this.dummy = function{
 	    $.each(listener, function(i){
-		listeners(i).dummy();
+		listeners(i).dummyView();
 	    });
 	}
     },
     
     /**
-     * Clase para crear listener de la vista facilmente.
+     * Funcion para crear listener de la vista facilmente.
      */
     ViewListener: function(list) {
 	if(!list) list = {};
 	return $.extend({
-	    dummy : function(){}
+	    dummyView : function(){}
 	}, list);
     }
 });
