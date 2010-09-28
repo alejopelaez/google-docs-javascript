@@ -21,15 +21,15 @@ jQuery.extend({
 	 * Pega los botones.
 	 */
 	$gdoc.append($("<input type='button' value='Load'></input><br><br>").click(function(){
-	    self.viewLoadData();
+	    self.viewLoadData($("#key").val());
 	}));
-
+	//"0As2pD6IuRl_7dE14LWlTYjhoVDFQRENMTVlmUzRzNGc"
 	/**
 	 * Funcion dummy
 	 */
-	this.viewLoadData = function(){	    
+	this.viewLoadData = function(key){	    
 	    $.each(listeners, function(i){
-		listeners[i].viewLoadData();
+		listeners[i].viewLoadData(key);
 	    });
 	}
 
