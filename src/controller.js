@@ -17,14 +17,22 @@ jQuery.extend({
             onLoadBegin : function(){
                 view.show("Cargar datos del modelo...");
             },
-            onLoadEnd : function(data){
-                //Aca el coigo que extraiga los datos
-                // result = "";
-                // for(day in data){
-                //     result += data[day] + "<br/>";
-                // }
-                // view.show(result);
-		view.show(data);
+            onLoadEnd : function(info){
+                //extraiga los datos
+		var data = info['data'];
+		var prune = info['recursive'];
+                result = "";
+		for(i in data){
+                    for(j in data[i]){
+			result += data[i][j] + "----";
+                    }
+		    if(prune)
+		    {
+			vlistener.viewLoadData(data[i][1]);
+		    }
+		    result += "<br/>";
+		}
+                view.show(result);
             }
         });
         model.addListener(mlist);

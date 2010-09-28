@@ -37,7 +37,7 @@ jQuery.extend({
 	 * Muestra la información
 	 */
 	this.show = function(datos){	  
-	    $dataOutput.html(datos);
+	    $dataOutput.append(datos);
 	}
     },
     
