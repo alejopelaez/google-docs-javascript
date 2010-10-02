@@ -7,17 +7,31 @@
     <script type="text/javascript" src="jquery-1.4.2.js"></script>
     <script type="text/javascript" src="model.js"></script>
     <script type="text/javascript" src="view.js"></script>
-    <script type="text/javascript" src="controller.js"></script>      
+    <script type="text/javascript" src="controller.js"></script>
+    <script language="javascript" type="text/javascript" src="jquery.jqplot.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery.jqplot.min.css" />    
     <script type="text/javascript">
 	  $(function(){
 	      var model = new $.Model();
-	      var view = new $.View($("#gdocs"), $("#data"))
+	      var view = new $.View($("#gdocs"), $("#data"), $("#candidatos"));
 	      var controller = new $.Controller(model,view);
+	  	  line1 = [1,4,9, 16];
+	  plot1 = $.jqplot('chart1', [line1], {
+	  legend:{show:true, location:'ne'},title:'Consolidado por candidatos',
+	  series:[ {label:'Numero de votos', renderer:$.jqplot.BarRenderer}],
+	  axes:{
+          xaxis:{renderer:$.jqplot.CategoryAxisRenderer}, 
+          yaxis:{min:0}
+	  }
 	  });
+	  });
+
     </script>
   </head>
   <body>
+    <div id="chart1"></div>
     <strong> Place your key: </strong> <input type="text" id="key" />
+    <div id="candidatos"></div>
     <div id="gdocs">
       <div id="data"></div>
     </div>

@@ -1,3 +1,6 @@
+candidatos = { "jojoy" : 0, "piedad" : 0, "reyes" : 0 };
+totales = {};
+//toLowerCase()
 jQuery.extend({
     Controller: function(model, view){
         /**
@@ -21,18 +24,25 @@ jQuery.extend({
                 //extraiga los datos
 		var data = info['data'];
 		var prune = info['recursive'];
-                result = "";
+		var whitespace = false;
 		for(i in data){
-                    for(j in data[i]){
-			result += data[i][j] + "----";
-                    }
-		    if(prune)
+                    if(data[i][1] == null || data[i][1] == "")
+			whitespace = true;
+		    if( data[i][1] != "" && data[i][1] != null && whitespace)
 		    {
-			vlistener.viewLoadData(data[i][1]);
+			if(prune)
+			{
+			    model.getAll(data[i][1]);
+			}
+			else 
+			{
+			    candidatos[data[i][0].toLowerCase()] += data[i][1];
+			}
+
 		    }
-		    result += "<br/>";
 		}
-                view.show(result);
+                console.log(totales);
+		view.showCandidatos(candidatos);
             }
         });
         model.addListener(mlist);

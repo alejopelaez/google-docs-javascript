@@ -1,5 +1,5 @@
 jQuery.extend({
-    View: function($gdoc, $dataOutput){
+    View: function($gdoc, $dataOutput, $candidatos){
 	console.log($dataOutput);
 	/**
 	 * Referencia a uno mismo (Truco!!)
@@ -32,12 +32,24 @@ jQuery.extend({
 		listeners[i].viewLoadData(key);
 	    });
 	}
-
+	/**
+	  * Muestra los totales nacionales de los candidatos
+	  */
+	this.showCandidatos =  function(datos)
+	{
+	    html = "";
+	    for( i in datos )
+	    {
+		html += "<strong>" + i + "</strong>: ";
+		html += datos[i] + "<br/>";
+	    }
+	    $candidatos.html(html);
+	}
 	/**
 	 * Muestra la información
 	 */
 	this.show = function(datos){	  
-	    $dataOutput.append(datos);
+	    $dataOutput.html(datos);
 	}
     },
     

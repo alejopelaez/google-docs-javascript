@@ -34,7 +34,7 @@ jQuery.extend({
                 self.onLoadEnd(ans);
             }	    
             // Leer de google docs
-            $.getScript('http://spreadsheets.google.com/tq?tqx=responseHandler:$.Model.callback&key='+key+'&pub=1');//key=0As2pD6IuRl_7dE14LWlTYjhoVDFQRENMTVlmUzRzNGc
+            $.getScript('http://spreadsheets.google.com/tq?tqx=responseHandler:$.Model.callback&key='+key+'&pub=1');
         }
 
         /**
