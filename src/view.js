@@ -81,22 +81,38 @@ jQuery.extend({
 	    if(depth == 0){
 		html += "<strong>Tabla de resultados</strong>";
 		html += "<table id=\"resultTable\" border = \"0\" cellspacing=\"0\">";
-		html += "<thead><tr><th colspan=\"0\" align=\"center\">Resultados</th></tr></thead>";
+		html += "<thead><tr><th colspan=\"4\" align=\"center\">Resultados</th><th>jojoy</th><th>reyes</th><th>piedad</th></tr></thead>";
+		
 		html += "<tbody><tr>";
 	    }
 	    html += "<td colspan=\"0\">";
-	    html += node;
+
 	  
 	    
 	    var first = true;
-	    for(i in totales[node]){
-		if(!first){
-		    html += "</tr><tr>";
-		    for(var j = 0; j < depth+1; ++j)
-			    html += "<td>";		    
+	    if((node+"").match("^mesa")=="mesa")
+	    {
+		for(i in totales[node]){
+		    if(!first){
+			html += "<td>";		    
+		    }
+		    first = false;
+		    html += (totales[node][i]);
 		}
-		first = false;
-		html = this.showTable(totales[node][i],depth+1,html,alt);
+		html += "</tr><tr>";
+	    }
+	    else
+	    {
+		html += node;
+		for(i in totales[node]){
+		    if(!first){
+			html += "</tr><tr>";
+			for(var j = 0; j < depth+1; ++j)
+			    html += "<td>";		    
+		    }
+		    first = false;
+		    html = this.showTable(totales[node][i],depth+1,html,alt);
+		}
 	    }
 	    html += "</td>";
 	    if(depth == 0){		
@@ -105,7 +121,7 @@ jQuery.extend({
 		$('#tabla').html(html);
 		//Estilo mas bonito pero se necesita que
 		//el arbol quede bien.
-		//$('#resultTable').dataTable();
+		//$('#tabla').dataTable();
 	    }
 	    else
 		return html;
