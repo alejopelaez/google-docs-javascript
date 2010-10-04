@@ -1,7 +1,7 @@
 
 jQuery.extend({
     View: function($gdoc, $dataOutput, $candidatos, $chart){
-	console.log($dataOutput);
+	//console.log($dataOutput);
 	/**
 	 * Referencia a uno mismo (Truco!!)
 	 */
@@ -49,7 +49,7 @@ jQuery.extend({
 	    pieline = [];
 	    for(i in hash)
 		pieline.push([i,hash[i]]);
-	    console.log(pieline);
+	    //console.log(pieline);
 	    p1 = $.jqplot(label, [pieline], {
 		title: label,
 		seriesDefaults:{renderer:$.jqplot.PieRenderer},
