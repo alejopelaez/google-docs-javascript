@@ -1,7 +1,5 @@
 candidatos = { "jojoy" : 0, "piedad" : 0, "reyes" : 0 };
-
 totales = {};
-//toLowerCase()
 jQuery.extend({
     Controller: function(model, view){
         /**
@@ -13,17 +11,17 @@ jQuery.extend({
             }
         });
         view.addListener(vlistener);
+        /**
+         * Función llamada cuando se terminan todos los
+         * requests.
+         */
+        $("#key").ajaxStop(function(){
+            view.show("Done!!");
+            view.showCandidatos(candidatos);
+            view.showTable("colombia",0,"");
+            //console.log(this.regionSummary("colombia", 0 , ""));
+        });
 
-	/**
-	 * Función llamada cuando se terminan todos los
-	 * requests.
-	 */
-	$("#key").ajaxStop(function(){
-	    view.show("Done!!");
-	    view.showCandidatos(candidatos);
-	    view.showTable("colombia",0,"",false);
-	});
-	
         /**
          * listen to the model
          */
@@ -62,9 +60,8 @@ jQuery.extend({
 			    candidatos[data[i][0].toLowerCase()] += data[i][1];
 			}
 
-		    }
-		}
-                //console.log(totales);
+                    }
+                }
             }
         });
         model.addListener(mlist);

@@ -31,11 +31,18 @@
   </head>
   <body>
     <p><strong> Place your key: </strong> <input type="text" id="key" /></p>
+    <div id="gdocs"></div>
+    <div id="data"></div>
     <p><div id="candidatos"></div></p>
+<<<<<<< HEAD
+    <p><div id="chart"></div></p>
+    <p><div id="tabla"></div></p>
+=======
     <div id="gdocs">
       <div id="data"></div>
     </div>
     <div id="chart"></div>
     <div id="tabla"></div>
+>>>>>>> f31628c4b8c6dc68d4e6eb2605be6fd9ffd584fc
   </body>
 </html>
