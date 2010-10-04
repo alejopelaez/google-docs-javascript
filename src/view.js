@@ -26,13 +26,6 @@ jQuery.extend({
 	    candidatos = { "jojoy" : 0, "piedad" : 0, "reyes" : 0 };
 	    self.viewLoadData($("#key").val());
 	}));
-	
-	
-	function createAction(label){
-	    $("."+label).live('click',function(){
-		$("#"+label).dialog('open');
-	    });
-	}
 	/**
 	  * Crea una grafica de pasteles
 	  */
@@ -70,6 +63,7 @@ jQuery.extend({
 		listeners[i].viewLoadData(key);
 	    });
 	}
+
 	/**
 	  * Muestra los totales nacionales de los candidatos
 	  */
@@ -77,13 +71,19 @@ jQuery.extend({
 	{
 	    candidates = [];
 	    totals = [];
-	    html = "";
 	    for( i in datos )
 	    {
-		html += "<strong>" + i + "</strong>: ";
 		candidates.push(i);
-		html += datos[i] + "<br/>";
 		totals.push(datos[i]);
+	    }
+	    var temp = ssort(candidates, totals);
+	    candidates = temp['c'];
+	    totals = temp['t'];
+	    html = "";
+	    for(i in totals)
+	    {
+	    	html += "<strong>" + candidates[i] + "</strong>: ";
+	    	html += totals[i] + "<br/>";
 	    }
 	    $candidatos.html(html);
 	    //Resets the chart
@@ -116,7 +116,7 @@ jQuery.extend({
 	    if(depth == 0){
 		html += "<strong>Tabla de resultados</strong>";
 		html += "<table id=\"resultTable\" border = \"0\" cellspacing=\"0\">";
-		html += "<thead><tr><th colspan=\"4\" align=\"center\">Resultados</th><th>jojoy</th><th>reyes</th><th>piedad</th></tr></thead>";
+		html += "<thead><tr><th colspan=\"4\" align=\"center\">Resultados</th><th>jojoy</th><th>piedad</th><th>reyes</th</tr></thead>";
 		
 		html += "<tbody><tr>";
 	    }
