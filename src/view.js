@@ -27,24 +27,18 @@ jQuery.extend({
 	    self.viewLoadData($("#key").val());
 	}));
 	
-
-    
-	$(".antioquia").live('click',function(){
-	    $("#antioquia").dialog('open');
-	});
-	$('.valle').live('click',function(){
-	    $("#valle").dialog('open');
-	});
-
-	$(".cundinamarca").live('click',function(){
-	    $("#cundinamarca").dialog('open');
-	});
-
+	
+	function createAction(label){
+	    $("."+label).live('click',function(){
+		$("#"+label).dialog('open');
+	    });
+	}
 	/**
 	  * Crea una grafica de pasteles
 	  */
 	this.crearPie = function(hash, label)
 	{
+	    createAction(label);
 	    $("html").append("<div id='"+label+"' style='heigh:400px;width:400px'></div>");
 	    pieline = [];
 	    for(i in hash)
@@ -137,6 +131,7 @@ jQuery.extend({
 		    first = false;
 		    html += (totales[node][i]);
 		}
+		//console.log(totales[node]);
 		html += "</tr><tr>";
 	    }
 	    else

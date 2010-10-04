@@ -59,6 +59,7 @@ jQuery.extend({
             onLoadEnd : function(info){
                 //extraiga los datos
 		var data = info['data'];
+		//console.log(data);
 		var prune = info['recursive'];
 		if(prune)
 		    var parent = data[0][1].toLowerCase();
@@ -74,7 +75,7 @@ jQuery.extend({
 		for(i in data){
                     if(data[i][1] == null || data[i][1] == "")
 			whitespace = true;
-		    if( data[i][1] != "" && data[i][1] != null && whitespace)
+		    if( data[i][1] !== "" && data[i][1] != null && whitespace)
 		    {
 			if(prune)
 			{
@@ -85,6 +86,7 @@ jQuery.extend({
 			{
 			    totales[parent][data[i][0].toLowerCase()] = data[i][1];
 			    candidatos[data[i][0].toLowerCase()] += data[i][1];
+			    //console.log(data);
 			}
 
                     }
