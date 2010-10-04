@@ -11,6 +11,27 @@ jQuery.extend({
             }
         });
         view.addListener(vlistener);
+	/**
+	 * Crea los resultados por departamento
+	 */
+	function helper(root)
+	{
+	    var partial = { 'jojoy' : 0, 'reyes' : 0, 'piedad' : 0}
+	    stack = [root];
+	    while(stack.length > 0)
+	    {
+		var actual = stack.pop();
+		if(actual.match("^mesa")=="mesa")
+		{
+		    for( i in totales[actual])
+			partial[i] += totales[actual][i]
+		}
+		else
+		    for( i in totales[actual])
+			stack.push(totales[actual][i]);
+	    }
+	    return partial;
+	}
         /**
          * Función llamada cuando se terminan todos los
          * requests.
@@ -19,6 +40,12 @@ jQuery.extend({
             view.show("Done!!");
             view.showCandidatos(candidatos);
             view.showTable("colombia",0,"");
+	    antioquia = helper("antioquia");
+	    view.crearPie(antioquia, "antioquia");
+	    valle = helper("valle del cauca");
+	    view.crearPie(valle, "valle");
+	    cundinamarca = helper("cundinamarca");
+	    view.crearPie(cundinamarca, "cundinamarca");
             //console.log(this.regionSummary("colombia", 0 , ""));
         });
 

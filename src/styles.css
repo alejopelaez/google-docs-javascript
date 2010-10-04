@@ -83,3 +83,10 @@ th.specalt {
     float:right;
     width: 40%;
 }
+.special{
+    text-decoration : underline;
+    color : blue;
+}
+.special:hover{
+    cursor:pointer;
+}

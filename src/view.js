@@ -26,7 +26,48 @@ jQuery.extend({
 	    candidatos = { "jojoy" : 0, "piedad" : 0, "reyes" : 0 };
 	    self.viewLoadData($("#key").val());
 	}));
+	
 
+    
+	$(".antioquia").live('click',function(){
+	    $("#antioquia").dialog('open');
+	});
+	$('.valle').live('click',function(){
+	    $("#valle").dialog('open');
+	});
+
+	$(".cundinamarca").live('click',function(){
+	    $("#cundinamarca").dialog('open');
+	});
+
+	/**
+	  * Crea una grafica de pasteles
+	  */
+	this.crearPie = function(hash, label)
+	{
+	    $("html").append("<div id='"+label+"' style='heigh:400px;width:400px'></div>");
+	    pieline = [];
+	    for(i in hash)
+		pieline.push([i,hash[i]]);
+	    console.log(pieline);
+	    p1 = $.jqplot(label, [pieline], {
+		title: label,
+		seriesDefaults:{renderer:$.jqplot.PieRenderer},
+		legend:{show:true}
+	    });
+	    $( "#"+label).dialog({
+		title : label,
+		minHeight: 425,
+		minWidth: 410,
+		autoOpen: false,
+		modal: true,
+		buttons: {
+		    Ok: function() {
+			$( this ).dialog( "close" );
+		    }
+		}
+	    });
+	}
 	/**
 	 * Funcion dummy
 	 */
@@ -85,13 +126,10 @@ jQuery.extend({
 		
 		html += "<tbody><tr>";
 	    }
-	    html += "<td colspan=\"0\">";
-
-	  
-	    
 	    var first = true;
 	    if((node+"").match("^mesa")=="mesa")
 	    {
+		html += "<td colspan=\"0\">";
 		for(i in totales[node]){
 		    if(!first){
 			html += "<td>";		    
@@ -103,7 +141,10 @@ jQuery.extend({
 	    }
 	    else
 	    {
-		html += node;
+		if(depth == 1)
+		    html += "<td colspan=\"0\" class='"+node+" special'>"+node;
+		else
+		    html += "<td colspan=\"0\">"+node;
 		for(i in totales[node]){
 		    if(!first){
 			html += "</tr><tr>";
