@@ -77,23 +77,35 @@ jQuery.extend({
 	/**
 	 * Funcion que muestra los resultados parciales por region.
 	 */
-	this.showTable = function(node,depth,html){
-	    if(depth == 0)html += "<table border = \"1\">";
-	    html += "<tr>";
-	    for(var i = 0; i <= depth; ++i){
-		html += "<td>";
-	    }
-	    console.log(totales[node]);
-	    html += node;
-	    for(i in totales[node]){
-		html = this.showTable(totales[node][i],depth+1,html);
-		html += "</tr><tr>"
-	    }
-	    html += "</tr>"
+	this.showTable = function(node,depth,html,alt){
 	    if(depth == 0){
-		console.log(totales);
+		html += "<strong>Tabla de resultados</strong>";
+		html += "<table id=\"resultTable\" border = \"0\" cellspacing=\"0\">";
+		html += "<thead><tr><th colspan=\"0\" align=\"center\">Resultados</th></tr></thead>";
+		html += "<tbody><tr>";
+	    }
+	    html += "<td colspan=\"0\">";
+	    html += node;
+	  
+	    
+	    var first = true;
+	    for(i in totales[node]){
+		if(!first){
+		    html += "</tr><tr>";
+		    for(var j = 0; j < depth+1; ++j)
+			    html += "<td>";		    
+		}
+		first = false;
+		html = this.showTable(totales[node][i],depth+1,html,alt);
+	    }
+	    html += "</td>";
+	    if(depth == 0){		
+		html += "</tr></tbody>";
 		html += "</table>";
-		$("#tabla").html(html);
+		$('#tabla').html(html);
+		//Estilo mas bonito pero se necesita que
+		//el arbol quede bien.
+		//$('#resultTable').dataTable();
 	    }
 	    else
 		return html;

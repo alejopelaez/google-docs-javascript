@@ -21,7 +21,7 @@ jQuery.extend({
 	$("#key").ajaxStop(function(){
 	    view.show("Done!!");
 	    view.showCandidatos(candidatos);
-	    view.showTable("colombia",0,"");
+	    view.showTable("colombia",0,"",false);
 	});
 	
         /**
