@@ -8,7 +8,6 @@ jQuery.extend({
          * listeners del modelo
          */
         var listeners = new Array();
-
         /**
          * load lots of data from the server
          * or return data from cache if it's already
@@ -18,7 +17,7 @@ jQuery.extend({
             //Se notifican los listeners que estamos
             //haciendo algo
             self.onLoadBegin();
-            $.Model.callback = function(root) {
+            callback = function(root) {		
                 var rows = root.table.rows;
                 var result = [];
 
@@ -30,11 +29,11 @@ jQuery.extend({
 		    result.push(rresult);
                 }
 		var prune = root.table.cols[1].type != 'number' ? true : false;
-		var ans = { 'data' : result, 'recursive' : prune };
+		var ans = { 'data' : result, 'recursive' : prune};
                 self.onLoadEnd(ans);
             }	    
             // Leer de google docs
-            $.getScript('http://spreadsheets.google.com/tq?tqx=responseHandler:$.Model.callback&key='+key+'&pub=1');
+            $.getScript('http://spreadsheets.google.com/tq?tqx=responseHandler:callback&key='+key+'&pub=1');
         }
 
         /**
@@ -71,7 +70,7 @@ jQuery.extend({
         if(!list) list = {};
         return $.extend({
             onLoadBegin : function(){},
-            onLoadEnd : function(){}
+            onLoadEnd : function(info){}
         }, list);
     }
 });

@@ -6,6 +6,7 @@ jQuery.extend({
 	 * Referencia a uno mismo (Truco!!)
 	 */
 	var self = this;
+	
 	/**
 	 * Arreglo con los listeners de esta vista.
 	 */
@@ -22,6 +23,7 @@ jQuery.extend({
 	 * Pega los botones.
 	 */
 	$gdoc.append($("<input type='button' value='Load'></input><br><br>").click(function(){
+	    candidatos = { "jojoy" : 0, "piedad" : 0, "reyes" : 0 };
 	    self.viewLoadData($("#key").val());
 	}));
 
@@ -67,10 +69,36 @@ jQuery.extend({
 		    }, 
 		    yaxis:{min:0}
 		},
-		highlighter: {sizeAdjust: 7.5},
-		cursor: {show: true}
+		highlighter: {sizeAdjust: 7.5, showTooltip: true, tooltipLocation: 'n', tooltipAxes: 'y'},
+		cursor: {show: true, showTooltip: true, followMouse: true}
 	    });
 	}
+
+	/**
+	 * Funcion que muestra los resultados parciales por region.
+	 */
+	this.showTable = function(node,depth,html){
+	    if(depth == 0)html += "<table border = \"1\">";
+	    html += "<tr>";
+	    for(var i = 0; i <= depth; ++i){
+		html += "<td>";
+	    }
+	    console.log(totales[node]);
+	    html += node;
+	    for(i in totales[node]){
+		html = this.showTable(totales[node][i],depth+1,html);
+		html += "</tr><tr>"
+	    }
+	    html += "</tr>"
+	    if(depth == 0){
+		console.log(totales);
+		html += "</table>";
+		$("#tabla").html(html);
+	    }
+	    else
+		return html;
+	}
+
 	/**
 	 * Muestra la información
 	 */
