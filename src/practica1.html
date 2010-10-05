@@ -6,6 +6,7 @@
   <head>     
     <title>Google docs MVC voting system</title>
     <script type="text/javascript" src="../lib/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="../lib/util.js"></script>
     <script type="text/javascript" src="model.js"></script>
     <script type="text/javascript" src="view.js"></script>
     <script type="text/javascript" src="controller.js"></script>
@@ -33,15 +34,17 @@
     </script>
   </head>
   <body>
-    <h1> Resultados elecciones </h1>
-    <p><strong> Ingrese su key: </strong> <input type="text" id="key" /></p>
-    <p><div id="candidatos"></div></p>
-    <div id="gdocs">
-      <div id="data"></div>
-    </div>
-    <div id="wrapper">
-      <div id="chart"></div>
-      <div id="tabla"></div>
+    <div id="content">
+      <h1> Resultados elecciones </h1>
+      <p><strong> Ingrese su key: </strong> <input type="text" id="key" /></p>
+      <div id="gdocs">
+	<div id="data"></div>
+      </div>
+      <p><div id="candidatos"></div></p>
+      <div id="wrapper">
+	<div id="chart"></div>
+	<div id="tabla"></div>
+      </div>
     </div>
   </body>
 </html>
