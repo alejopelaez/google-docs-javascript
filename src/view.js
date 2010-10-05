@@ -30,12 +30,11 @@ jQuery.extend({
 	  */
 	this.crearPie = function(hash, label)
 	{
-	    createAction(label);
 	    $("html").append("<div id='"+label+"' style='heigh:400px;width:400px'></div>");
+	    createAction(label);
 	    pieline = [];
 	    for(i in hash)
 		pieline.push([i,hash[i]]);
-	    //console.log(pieline);
 	    p1 = $.jqplot(label, [pieline], {
 		title: label,
 		seriesDefaults:{renderer:$.jqplot.PieRenderer},
@@ -122,23 +121,17 @@ jQuery.extend({
 	    var first = true;
 	    if((node+"").match("^mesa")=="mesa")
 	    {
-		html += "<td colspan=\"0\">";
-		for(i in totales[node]){
-		    if(!first){
-			html += "<td>";		    
-		    }
-		    first = false;
-		    html += (totales[node][i]);
-		}
-		//console.log(totales[node]);
+		html += "<td colspan=\"0\">"+totales[node]['jojoy']+"</td>";
+		html += "<td>"+totales[node]['piedad']+"</td>";
+		html += "<td>"+totales[node]['reyes']+"</td>";
 		html += "</tr><tr>";
 	    }
 	    else
 	    {
-		if(depth == 1)
-		    html += "<td colspan=\"0\" class='"+node+" special'>"+node;
-		else
-		    html += "<td colspan=\"0\">"+node;
+		//if(depth == 1)
+		html += "<td colspan=\"0\" class='"+node+" special'>"+node;
+		//else
+		//  html += "<td colspan=\"0\">"+node;
 		for(i in totales[node]){
 		    if(!first){
 			html += "</tr><tr>";

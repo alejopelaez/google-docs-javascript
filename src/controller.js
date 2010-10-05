@@ -23,13 +23,16 @@ jQuery.extend({
             view.show("Done!!");
             view.showCandidatos(candidatos);
             view.showTable("colombia",0,"");
-	    antioquia = helper("antioquia");
-	    view.crearPie(antioquia, "antioquia");
-	    valle = helper("valle del cauca");
-	    view.crearPie(valle, "valle");
-	    cundinamarca = helper("cundinamarca");
-	    view.crearPie(cundinamarca, "cundinamarca");
-            //console.log(this.regionSummary("colombia", 0 , ""));
+	    var arr = jQuery("#resultTable").find('[class]');
+	    $.each(arr,function(index, value){
+	    	var param = $(value).attr('class').split(" ");
+	    	var t = param[0];
+	    	for(var i = 1; i < param.length - 1; ++i)
+	    	    t+=" "+param[i];
+	    	var subTotal = helper(t);
+	    	view.crearPie(subTotal, param[0]);
+	    });
+	    
         });
 
         /**
