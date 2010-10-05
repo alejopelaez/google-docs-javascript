@@ -1,7 +1,5 @@
-
 jQuery.extend({
     View: function($gdoc, $dataOutput, $candidatos, $chart){
-	//console.log($dataOutput);
 	/**
 	 * Referencia a uno mismo (Truco!!)
 	 */
@@ -147,9 +145,6 @@ jQuery.extend({
 		html += "</tr></tbody>";
 		html += "</table>";
 		$('#tabla').html(html);
-		//Estilo mas bonito pero se necesita que
-		//el arbol quede bien.
-		//$('#tabla').dataTable();
 	    }
 	    else
 		return html;
