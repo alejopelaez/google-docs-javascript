@@ -7,6 +7,9 @@ jQuery.extend({
          */
         var vlistener = $.ViewListener({
             viewLoadData : function(key){
+		//Inicializa los hashes
+		candidatos = { "jojoy" : 0, "piedad" : 0, "reyes" : 0 };
+		totales = {};
                 var all = model.getAll(key);
             }
         });

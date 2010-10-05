@@ -23,7 +23,6 @@ jQuery.extend({
 	 * Pega los botones.
 	 */
 	$gdoc.append($("<input type='button' value='Load'></input><br><br>").click(function(){
-	    candidatos = { "jojoy" : 0, "piedad" : 0, "reyes" : 0 };
 	    self.viewLoadData($("#key").val());
 	}));
 	/**
