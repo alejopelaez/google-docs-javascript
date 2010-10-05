@@ -1,15 +1,15 @@
 body {
     font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-    color: #4f6b72;
-    background: #4f6b72;    
+    color: #005A9C;
+    background: #005A9C;    
 }
 #content{
     margin:5px;
     padding:5px;
     background: #E6EAE9;
-    border-style: double;
-    border-width:5px;
-    border-color:#4f6f7f;
+    border-style: solid;
+    border-width:1px;
+    border-color:#000;
 }
 a {
     color: #c75f3e;
